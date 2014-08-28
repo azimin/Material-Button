@@ -10,13 +10,12 @@ import UIKit
 import QuartzCore
 
 enum MaterialButtonState {
-    case In
-    case Out
+    case In, Out
 }
 
 class MaterialTouch: UIButton {
 
-    var materialState: MaterialButtonState = MaterialButtonState.In
+    private var materialState: MaterialButtonState = .In
     
     // MARK: Init
     
@@ -29,26 +28,28 @@ class MaterialTouch: UIButton {
     {
         super.init(coder: aDecoder)
         layer.cornerRadius = 10;
-        layer.masksToBounds = true
-        
+
         if let image = self.imageForState(UIControlState.Normal) {
+            setImage(image, forState: UIControlState.Highlighted)
             createMask(image)
         }
     }
     
     // MARK: Work with image
     
-    var maskForSelection: CALayer!
-    
     override func setImage(image: UIImage!, forState state: UIControlState) {
         super.setImage(image, forState: state)
-        createMask(image)
+        
+        if (state == .Normal) {
+            setImage(image, forState: UIControlState.Highlighted)
+            createMask(image)
+        }
     }
     
     private func createMask(var image: UIImage!) {
-        maskForSelection = CALayer()
+        let maskForSelection = CALayer()
         maskForSelection.contents = image.CGImage
-        maskForSelection.frame = CGRectMake(0, 0, image.size.width / 2, image.size.height / 2)
+        maskForSelection.frame = CGRectMake(0, 0, image.size.width, image.size.height)
         
         self.layer.mask = maskForSelection
         self.layer.masksToBounds = true
@@ -57,6 +58,8 @@ class MaterialTouch: UIButton {
     // MARK: Touch methods
     
     override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
+        super.touchesBegan(touches, withEvent: event)
+        
         materialState = .In
         
         var touch = touches.anyObject() as UITouch
@@ -66,6 +69,8 @@ class MaterialTouch: UIButton {
     
     override func touchesMoved(touches: NSSet!, withEvent event: UIEvent!)
     {
+        super.touchesMoved(touches, withEvent: event)
+        
         var touch = touches.anyObject() as UITouch
         var touchPoint = touch.locationInView(self)
         
@@ -83,45 +88,49 @@ class MaterialTouch: UIButton {
     }
     
     override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!)  {
+        super.touchesEnded(touches, withEvent: event)
+        touchCircle?.removeFromSuperlayer()
+    }
+    
+    override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
+        super.touchesCancelled(touches, withEvent: event)
         touchCircle?.removeFromSuperlayer()
     }
     
     // MARK: Circle animation methods
     
-    var touchCircle: CAShapeLayer?
+    var touchCircle: CAShapeLayer!
     
     private func materialAnimationFromPoint(point: CGPoint) {
         touchCircle?.removeFromSuperlayer()
         
-        let newTouchCircle = CAShapeLayer()
+        touchCircle = CAShapeLayer()
         let radius = sqrt(bounds.size.width * bounds.size.width + bounds.size.height * bounds.size.height)
         
-        newTouchCircle.backgroundColor = UIColor.blackColor().CGColor
-        newTouchCircle.opacity = 0.35
-        newTouchCircle.frame = CGRectMake(0, 0, radius * 2, radius * 2)
-        newTouchCircle.position = point
-        newTouchCircle.cornerRadius = radius
+        touchCircle.backgroundColor = UIColor.blackColor().CGColor
+        touchCircle.opacity = 0.25
+        touchCircle.frame = CGRectMake(0, 0, radius * 2, radius * 2)
+        touchCircle.position = point
+        touchCircle.cornerRadius = radius
         
         var animation = CABasicAnimation(keyPath: "transform.scale")
         animation.duration = 0.3
         
-        animation.fromValue = NSValue(CATransform3D: CATransform3DMakeScale(0.0, 0.0, 1.0))//[NSValue valueWithCATransform3D:CATransform3DIdentity];
+        animation.fromValue = NSValue(CATransform3D: CATransform3DMakeScale(0.0, 0.0, 1.0))
         animation.toValue = NSValue(CATransform3D: CATransform3DIdentity)
         
-        newTouchCircle.addAnimation(animation, forKey: "zoom")
-        
-        touchCircle = newTouchCircle
+        touchCircle.addAnimation(animation, forKey: "zoom")
         self.layer.addSublayer(touchCircle)
     }
     
     private func materialAnimationGoAbroadInPoint(point: CGPoint, state: MaterialButtonState) {
         
-        touchCircle!.position = point
+        touchCircle?.position = point
         
         if (state == MaterialButtonState.Out) {
-            touchCircle!.opacity = 0.0
+            touchCircle?.opacity = 0.0
         } else {
-            touchCircle!.opacity = 0.35
+            touchCircle?.opacity = 0.35
         }
         
         var transformValueOne = NSValue(CATransform3D: CATransform3DIdentity)

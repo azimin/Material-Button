@@ -26,15 +26,18 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VqT-6W-afs" customClass="MaterialTouch" customModule="MaterialSelection" customModuleProvider="target">
                                 <rect key="frame" x="60" y="132" width="200" height="200"/>
-                                <state key="normal" image="circleButton.png">
+                                <state key="normal" image="circleButton">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nPJ-Ax-LmP" customClass="MaterialTouch" customModule="MaterialSelection" customModuleProvider="target">
                                 <rect key="frame" x="60" y="340" width="200" height="200"/>
-                                <state key="normal" image="swiftButton.png">
+                                <state key="normal" image="swiftButton">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="swifButtonAction:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="0kF-8q-NOW"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -46,8 +49,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="circleButton.png" width="400" height="400"/>
-        <image name="swiftButton.png" width="400" height="400"/>
+        <image name="circleButton" width="200" height="200"/>
+        <image name="swiftButton" width="200" height="200"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

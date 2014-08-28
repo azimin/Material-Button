@@ -14,7 +14,6 @@
 		9271E1A8198F7CE1004AD811 /* MaterialSelectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9271E1A7198F7CE1004AD811 /* MaterialSelectionTests.swift */; };
 		9271E1B3198F7D4D004AD811 /* MaterialTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9271E1B2198F7D4D004AD811 /* MaterialTouch.swift */; };
 		9271E1B5198F7E44004AD811 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9271E1B4198F7E44004AD811 /* QuartzCore.framework */; };
-		92FD1B4219ABCD3900BE5E9E /* circleButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 92FD1B4119ABCD3900BE5E9E /* circleButton.png */; };
 		92FD1B4419ABD1CB00BE5E9E /* swiftButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 92FD1B4319ABD1CB00BE5E9E /* swiftButton.png */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +39,6 @@
 		9271E1A7198F7CE1004AD811 /* MaterialSelectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialSelectionTests.swift; sourceTree = "<group>"; };
 		9271E1B2198F7D4D004AD811 /* MaterialTouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialTouch.swift; sourceTree = "<group>"; };
 		9271E1B4198F7E44004AD811 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		92FD1B4119ABCD3900BE5E9E /* circleButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circleButton.png; sourceTree = "<group>"; };
 		92FD1B4319ABD1CB00BE5E9E /* swiftButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swiftButton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,7 +85,6 @@
 			children = (
 				9271E194198F7CE1004AD811 /* AppDelegate.swift */,
 				9271E196198F7CE1004AD811 /* ViewController.swift */,
-				92FD1B4119ABCD3900BE5E9E /* circleButton.png */,
 				92FD1B4319ABD1CB00BE5E9E /* swiftButton.png */,
 				9271E1B1198F7CEC004AD811 /* UIButton */,
 				9271E198198F7CE1004AD811 /* Main.storyboard */,
@@ -212,7 +209,6 @@
 			files = (
 				92FD1B4419ABD1CB00BE5E9E /* swiftButton.png in Resources */,
 				9271E19A198F7CE1004AD811 /* Main.storyboard in Resources */,
-				92FD1B4219ABCD3900BE5E9E /* circleButton.png in Resources */,
 				9271E19C198F7CE1004AD811 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
